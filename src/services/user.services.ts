@@ -1,31 +1,40 @@
-import {iTask, iUserRegister} from "../interfaces"
-import {db} from "../server"
+import {iUserLogin, iUserRegister} from "../interfaces"
 
-async function readData(collectionName:string) {
-    const snapshot = await db.collection(collectionName).get()
-
-    const data: any = []
-    snapshot.forEach((doc)=>{
-        data.push({id: doc.id, ...doc.data()})
-    })
-
-    return data
-}
-
-async function createData(collectionName: string, data: iUserRegister | iTask) {
-    const docRef = db.collection(collectionName).doc()
-    await docRef.set(data)
-
-    return docRef
-}
+import {getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword} from "firebase/auth"
 
 const registerUserService = async (userData: iUserRegister) => {
+    const auth = getAuth()
+  
     try {
-        await createData("users", userData)
-        return [{message: "Usuário criado!"}, 201]
-    } catch (error) {
-        return [{message: error}, 400]
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        userData.email,
+        userData.password
+      )
+      const user = userCredential.user
+      await updateProfile(user, {
+        displayName: userData.name,
+      })
+      return [user, 201]
+    } catch (error: any) {
+      return [{message: error.code}, 400]
+    }
+}
+  
+const userLoginService = async (data: iUserLogin) => {
+    const auth = getAuth()
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      )
+      const user = userCredential.user
+      return [user, 200]
+    } catch (error: any) {
+      return [{message: "Email ou senha não correspondem!"}, 401]
     }
 }
 
-export {registerUserService}
+export {registerUserService, userLoginService}

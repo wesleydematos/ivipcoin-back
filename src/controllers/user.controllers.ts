@@ -1,9 +1,9 @@
-import {iUserRegister} from "../interfaces"
-import { registerSchema } from "../schemas";
-import {registerUserService} from "../services"
+import {iUserLogin, iUserRegister} from "../interfaces"
+import {loginSchema, registerSchema} from "../schemas"
+import {registerUserService, userLoginService} from "../services"
 
 import {Request, Response} from "express"
-import { ValidationError } from 'yup'
+import {ValidationError} from "yup"
 
 const registerUserController = async (req: Request, res: Response) => {
     const userData: iUserRegister = req.body
@@ -19,4 +19,18 @@ const registerUserController = async (req: Request, res: Response) => {
       }
 }
 
-export {registerUserController}
+const userLoginController = async (req: Request, res: Response) => {
+  const userData: iUserLogin = req.body
+
+  try {
+    const validatedLogin = await loginSchema.validate(userData, {
+      abortEarly: false,
+    })
+    const [user, status] = await userLoginService(validatedLogin)
+    return res.status(status as number).json(user)
+  } catch (error: ValidationError | any) {
+    return res.status(401).json({message: error.errors || error})
+  }
+}
+
+export {registerUserController, userLoginController}

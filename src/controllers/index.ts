@@ -1,3 +1,3 @@
-import {registerUserController} from "./user.controllers"
+import {registerUserController, userLoginController} from "./user.controllers"
 
-export {registerUserController}
+export {registerUserController, userLoginController}

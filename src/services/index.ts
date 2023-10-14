@@ -1,3 +1,3 @@
-import {registerUserService} from "./user.services"
+import {registerUserService, userLoginService} from "./user.services"
 
-export {registerUserService}
+export {registerUserService, userLoginService}
