@@ -1,4 +1,4 @@
 import {iUserRegister, iUserLogin} from "./user.interfaces"
-import {iCreateTask} from "./tasks.interfaces"
+import {iTask} from "./tasks.interfaces"
 
-export {iUserRegister, iUserLogin, iCreateTask}
+export {iUserRegister, iUserLogin, iTask}

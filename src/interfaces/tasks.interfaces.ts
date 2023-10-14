@@ -1,6 +1,6 @@
-interface iCreateTask {
+interface iTask {
     title: string;
     description: string;
 }
 
-export {iCreateTask}
+export {iTask}
