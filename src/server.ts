@@ -1,9 +1,12 @@
 import app from "./app"
+var serviceAccount = require("../serviceAccountKey.json") 
 
 import {initializeApp} from "firebase/app"
 import * as admin from "firebase-admin"
 
-admin.initializeApp()
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+})
 
 const firebaseConfig = {
     apiKey: "AIzaSyC9FsYu5RxXsEc5ZxfDsN2ZJ14V3gctAMI",
@@ -15,6 +18,7 @@ const firebaseConfig = {
     measurementId: "G-VK18MYP21C"
 }
 
+export const db = admin.firestore()
 export const firebaseApp = initializeApp(firebaseConfig)
 
 app.listen(3030, (): void => console.log("Server running on port 3030"))
