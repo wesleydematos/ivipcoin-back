@@ -1,9 +1,7 @@
 import {Router} from "express"
+import {ensureAuthMiddleware} from "../middlewares"
+import {createTaskController} from "../controllers"
 
 export const tasksRouter: Router = Router()
 
-// tasksRouter.post("", ensureAuthMiddleware, createTaskController);
-// tasksRouter.get("", listTasksController);
-// tasksRouter.get(":/id", listTaskByIdController);
-// tasksRouter.patch(":/id", updateTaskController);
-// tasksRouter.delete(":/id", deleteTaskController)
+tasksRouter.post("", ensureAuthMiddleware, createTaskController)
