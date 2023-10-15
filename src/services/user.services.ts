@@ -16,8 +16,8 @@ const registerUserService = async (userData: iUserRegister) => {
         displayName: userData.name,
       })
       return [user, 201]
-    } catch (error: any) {
-      return [{message: error.code}, 400]
+    } catch (error) {
+      return [{message: error}, 400]
     }
 }
   
@@ -32,7 +32,7 @@ const userLoginService = async (data: iUserLogin) => {
       )
       const user = userCredential.user
       return [user, 200]
-    } catch (error: any) {
+    } catch (_error) {
       return [{message: "Email ou senha não correspondem!"}, 401]
     }
 }
