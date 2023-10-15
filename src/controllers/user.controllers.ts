@@ -6,17 +6,17 @@ import {Request, Response} from "express"
 import {ValidationError} from "yup"
 
 const registerUserController = async (req: Request, res: Response) => {
-    const userData: iUserRegister = req.body
+  const userData: iUserRegister = req.body
 
-    try {
-        const validatedRegister = await registerSchema.validate(userData, {
-          abortEarly: false,
-        })
-        const [newUser, status] = await registerUserService(validatedRegister)
-        return res.status(status as number).json(newUser)
-      } catch (error: ValidationError | any) {
-        return res.status(400).json({ message: error.errors || error})
-      }
+  try {
+    const validatedRegister = await registerSchema.validate(userData, {
+      abortEarly: false,
+    })
+    const [newUser, status] = await registerUserService(validatedRegister)
+    return res.status(status as number).json(newUser)
+  } catch (error: ValidationError | any) {
+    return res.status(400).json({ message: error.errors || error})
+  }
 }
 
 const userLoginController = async (req: Request, res: Response) => {
