@@ -1,5 +1,6 @@
-import {Router} from "express"
 import {registerUserController, userLoginController} from "../controllers"
+
+import {Router} from "express"
 
 export const userRouter: Router = Router()
 
