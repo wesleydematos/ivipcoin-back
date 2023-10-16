@@ -32,7 +32,7 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 - [Firebase-admin](https://www.npmjs.com/package/firebase-admin)
 - [Cross-env](https://www.npmjs.com/package/cross-env)
 
-A URL base da aplicação: 
+A URL base da aplicação: https://gerenciador-de-tarefas.cyclic.cloud
 
 ---
 
@@ -93,7 +93,7 @@ npm run dev
 ### Exemplo de Request:
 ```
 POST /user
-Host: 
+Host: https://gerenciador-de-tarefas.cyclic.cloud
 Authorization: None
 Content-type: application/json
 ```
@@ -156,7 +156,7 @@ Essa resposta é padrão do firebase/auth, para essa aplicação algumas das inf
 ### Exemplo de Request:
 ```
 POST/user/login
-Host: 
+Host: https://gerenciador-de-tarefas.cyclic.cloud
 Authorization: None
 Content-type: application/json
 ```
@@ -229,7 +229,7 @@ Content-type: application/json
 ### Exemplo de Request:
 ```
 POST/tasks
-Host: 
+Host: https://gerenciador-de-tarefas.cyclic.cloud
 Authorization: Bearer Token
 Content-type: application/json
 ```
@@ -275,7 +275,7 @@ Content-type: application/json
 ### Exemplo de Request:
 ```
 GET/tasks
-Host: 
+Host: https://gerenciador-de-tarefas.cyclic.cloud
 Authorization: Bearer Token
 Content-type: none
 ```
@@ -323,7 +323,7 @@ Content-type: none
 ### Exemplo de Request:
 ```
 PATCH/tasks/oFmTdasVVMFvTTpsWVd4
-Host: 
+Host: https://gerenciador-de-tarefas.cyclic.cloud
 Authorization: Bearer Token
 Content-type: application/json
 ```
@@ -355,7 +355,7 @@ Content-type: application/json
 ### Exemplo de Request:
 ```
 DELETE/tasks/oFmTdasVVMFvTTpsWVd4
-Host: 
+Host: https://gerenciador-de-tarefas.cyclic.cloud
 Authorization: Bearer Token
 Content-type: none
 ```
